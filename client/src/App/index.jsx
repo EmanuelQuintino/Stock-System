@@ -9,7 +9,6 @@ export function App() {
       <h1>App</h1>
       <main>
         <HandleProducts/>
-        <FormProducts/>
       </main>
     </Container>    
   )

@@ -1,6 +1,5 @@
 import { Container } from "./style"
 import { BsSearch } from "react-icons/bs"
-import { BiEdit } from "react-icons/bi"
 import Modal from 'react-bootstrap/Modal';
 import { FormProducts } from "../FormProducts";
 import {API} from"../../config/api";
@@ -8,96 +7,79 @@ import { ImSpinner2 } from 'react-icons/im'
 import { useState, useEffect } from "react";
 
 export function HandleProducts() {
-    const [listStudents, setListStudents] = useState([]);
+    const [listProducts, setListProducts] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [studentData, setStudentData] = useState({});
-    const [searchStudent, setSearchStudent] = useState("");
+    const [productData, setProductData] = useState({});
+    const [searchProduct, setSearchProduct] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    const filterStudents = listStudents.filter((student) => {
+    const filterProducts = listProducts.filter((Product) => {
         return (
-            String(student.id).toLowerCase().includes(searchStudent.toLowerCase()) ||
-            student.name.toLowerCase().includes(searchStudent.toLowerCase()) ||
-            student.city.toLowerCase().includes(searchStudent.toLowerCase())
+            String(Product.id).toLowerCase().includes(searchProduct.toLowerCase())
         );
     })
     
-    function fetchStudents() {
+    function fetchProducts() {
         setIsLoading(true);
         API.get("/products")
-            .then((res) => setListStudents(res.data))
+            .then((res) => setListProducts(res.data))
             .catch((error) => alert(error.response.data))
             .finally(setIsLoading(false));
     }
 
     useEffect(() => {
-        fetchStudents();
+        fetchProducts();
     }, []);
 
-    function modalOpen(studentID) {
+    function modalOpen(ProductID) {
         setShowModal(true);
-        const student = listStudents.findIndex(student => student.id === studentID);
-        setStudentData(listStudents[student]);  
+        const Product = listProducts.findIndex(Product => Product.id === ProductID);
+        setProductData(listProducts[Product]);  
     }
 
     function modalClose() {
         setShowModal(false);
     }
 
-    function onSubmitFetchStudents(event) {
+    function onSubmitFetchProducts(event) {
         event.preventDefault();
-        fetchStudents();
+        fetchProducts();
     }
     
     return (
         <Container>
             <article>
                 <section className="titleSearch">
-                    <h1>Alunos</h1>
+                    <h1>Produtos</h1>
                     <div className="inputSection">
-                        <form onSubmit={onSubmitFetchStudents}>
+                        <form onSubmit={onSubmitFetchProducts}>
                             <input
-                                id="inputSearchStudent" 
+                                id="inputSearchProduct" 
                                 type="text"
                                 placeholder=" " 
-                                onChange={(event) => setSearchStudent(event.target.value)}
+                                onChange={(event) => setSearchProduct(event.target.value)}
                             />
-                            <label htmlFor="inputSearchStudent" className="labelInputSearch">Buscar aluno</label>
+                            <label htmlFor="inputSearchProduct" className="labelInputSearch">Buscar produto</label>
                             <BsSearch className="searchIcon"/>
                         </form>
                     </div>
                 </section>
 
-                <section className="tableStudents">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Cidade</th>
-                                <th>Telefone</th>
-                                <th>Editar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            { isLoading ? <ImSpinner2 className="spinner"/> :
-                                listStudents &&
-                                    filterStudents.map((student, index) => {
-                                        return (
-                                            <tr key={student.id} onClick={() => modalOpen(student.id)}>
-                                                <td>{student.id}</td>
-                                                <td>{student.name}</td>
-                                                <td>{student.city}</td>
-                                                <td>{student.phone}</td>
-                                                <td>
-                                                    <BiEdit className="editIcon"/>
-                                                </td>
-                                            </tr>
-                                        )
-                                    }) 
-                            }
-                        </tbody>
-                    </table>  
+                <section className="tableProducts">
+                    { isLoading ? <ImSpinner2 className="spinner"/> :
+                        listProducts &&
+                            filterProducts.map((product) => {
+                                return (
+                                    <div className="cardProduct" key={product.id} onClick={() => modalOpen(product.id)}>
+                                        <div>{product.id}#</div>
+                                        <div>{product.product}</div>
+                                        <div>{product.description}</div>
+                                        <div>{product.link_image}</div>
+                                        <div>{product.expires_in}</div>
+                                    </div>
+                                )
+                            }) 
+                    }
                 </section>
 
                 <section>
@@ -108,8 +90,8 @@ export function HandleProducts() {
                         <Modal.Body style={{padding: '.8rem 2.4rem'}}>
                             <FormProducts 
                                 modalClose={modalClose} 
-                                studentData={studentData}
-                                fetchStudents={fetchStudents}
+                                productData={productData}
+                                fetchProducts={fetchProducts}
                             />
                         </Modal.Body>            
                     </Modal>

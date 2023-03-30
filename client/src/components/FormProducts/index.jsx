@@ -1,16 +1,20 @@
+import { useState } from 'react';
 import { Container } from './style';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 import { useForm } from "react-hook-form";
+import { API } from "../../config/api";
 
 export function FormProducts() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-
-  const API = "http://localhost:3000/products";
+  const { isRegister, setIsRegister } = useState(true);
   
   function onSubmit(data) {
     console.log(data);
   }
+
+  console.log(isRegister);
 
   return (
     <Container>
@@ -85,16 +89,29 @@ export function FormProducts() {
           />
           {errors.linkImage && <span className='error'>{errors.linkImage.message}</span>}
         </Form.Group>
-
-        <Button variant="primary" type="submit" style={{
-          marginTop: "1.6rem",
-          width: "100%",
-          padding: ".4rem",
-          fontSize: "1.4rem" 
-        }}>
-          Cadastrar
-        </Button>
-      </Form>
+          <Modal.Footer>
+            {console.log(isRegister)}
+            {isRegister ?
+                <Button variant="primary" type="submit" style={{
+                  marginTop: "1.6rem",
+                  width: "100%",
+                  padding: ".4rem",
+                  fontSize: "1.4rem" 
+                }}>
+                Cadastrar
+              </Button> 
+              :
+              <>
+                <Button variant="danger" onClick={() => deleteStudent(studentData.id)}>
+                    Deletar
+                </Button>
+                <Button variant="primary" type="submit">
+                    Atualizar
+                </Button>
+              </>
+            }
+          </Modal.Footer>
+        </Form>
     </Container>
   );
 }
