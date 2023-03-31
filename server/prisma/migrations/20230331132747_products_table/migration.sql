@@ -1,9 +1,10 @@
 -- CreateTable
 CREATE TABLE `products` (
     `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-    `product` VARCHAR(255) NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
     `description` VARCHAR(255) NOT NULL,
     `price` FLOAT NOT NULL,
+    `amount` INTEGER UNSIGNED NOT NULL,
     `expires_in` DATE NOT NULL,
     `link_image` VARCHAR(255) NOT NULL,
     `created_at` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),

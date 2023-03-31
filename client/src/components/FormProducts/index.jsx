@@ -55,7 +55,7 @@ export function FormProducts() {
               type="number"
               step={0.1}
               min = {0}
-              placeholder="R$ 3.50"
+              placeholder="R$"
               inputMode='numeric'
               autoComplete='cc-number'
               {...register("price", { 
@@ -72,7 +72,7 @@ export function FormProducts() {
               type="number"
               step={1}
               min = {0}
-              placeholder="80"
+              placeholder="Unidades"
               inputMode='numeric'
               autoComplete='cc-number'
               {...register("amount", { 

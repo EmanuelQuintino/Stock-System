@@ -46,15 +46,15 @@ module.exports = {
     async update(req, res) {
         try {
             const { id } = req.params;
-            const {product, description, price, amount, expires_in, link_image} = req.body;
+            const {name, description, price, amount, expires_in, link_image} = req.body;
 
-            if (!product || 
+            if (!name || 
                 !description || 
                 !price || 
                 !amount || 
                 !expires_in || 
                 !link_image || 
-                product == "" || 
+                name == "" || 
                 description == "" || 
                 price == "" || 
                 amount == "" || 
@@ -67,7 +67,7 @@ module.exports = {
             if (!listProduct) return res.status(400).json("Produto não encontrado");
             
             await prisma.products.update({
-                data: {product, description, price: Number(price), amount: Number(amount), expires_in: new Date(expires_in), link_image},
+                data: {name, description, price: Number(price), amount: Number(amount), expires_in: new Date(expires_in), link_image},
                 where: {id: Number(id)}
             });
             return res.json("Produto atualizado com sucesso");
