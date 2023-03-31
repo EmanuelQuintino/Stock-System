@@ -6,17 +6,14 @@ import Modal from 'react-bootstrap/Modal';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { useForm } from "react-hook-form";
-import { API } from "../../config/api";
 
 export function FormProducts() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { isRegister, setIsRegister } = useState(true);
+  const [isRegister, setIsRegister ] = useState(true);
   
   function onSubmit(data) {
     console.log(data);
   }
-
-  console.log(isRegister);
 
   return (
     <Container>
@@ -111,7 +108,6 @@ export function FormProducts() {
           {errors.linkImage && <span className='error'>{errors.linkImage.message}</span>}
         </Form.Group>
           <Modal.Footer>
-            {console.log(isRegister)}
             {isRegister ?
                 <Button variant="primary" type="submit" style={{
                   marginTop: "1.6rem",
