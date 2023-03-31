@@ -6,7 +6,7 @@ CREATE TABLE `products` (
     `price` FLOAT NOT NULL,
     `amount` INTEGER UNSIGNED NOT NULL,
     `expires_in` DATE NOT NULL,
-    `link_image` VARCHAR(255) NOT NULL,
+    `link_image` TEXT NOT NULL,
     `created_at` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updated_at` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 

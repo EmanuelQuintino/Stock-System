@@ -14,7 +14,7 @@ model products {
   price       Float     @db.Float
   amount      Int       @db.UnsignedInt
   expires_in  DateTime  @db.Date
-  link_image  String    @db.VarChar(255)
+  link_image  String    @db.Text
   created_at  DateTime  @default(now()) @db.DateTime(0)
   updated_at  DateTime  @default(now()) @db.DateTime(0) @updatedAt
 }

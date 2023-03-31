@@ -105,7 +105,7 @@ export function FormProducts() {
             placeholder="Link da imagem" 
             {...register("linkImage", { 
               required: "Campo obrigatório", 
-              maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+              maxLength: {value: 2083, message: "Tamanho máximo da URL é de 2083 caracteres"}
             })}
           />
           {errors.linkImage && <span className='error'>{errors.linkImage.message}</span>}
