@@ -3,6 +3,8 @@ import { Container } from './style';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import { useForm } from "react-hook-form";
 import { API } from "../../config/api";
 
@@ -19,18 +21,18 @@ export function FormProducts() {
   return (
     <Container>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3" controlId="product">
+        <Form.Group className="mb-3" controlId="name">
           <Form.Label>Produto</Form.Label>
           <Form.Control 
             type="text" 
             placeholder="Nome do produto" 
-            {...register("product", { 
+            {...register("name", { 
               required: "Campo obrigatório",
               pattern: {value: /[A-Za-z]/, message: "Somente texto é permitido"}, 
               maxLength: {value: 60, message: "Número máximo de caracteres é 60"}
             })}
           />
-          {errors.product && <span className='error'>{errors.product.message}</span>}
+          {errors.name && <span className='error'>{errors.name.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="desciption">
@@ -45,24 +47,43 @@ export function FormProducts() {
           />
           {errors.description && <span className='error'>{errors.description.message}</span>}
         </Form.Group>
-
-        <Form.Group className="mb-3" controlId="price">
+        
+        <Row className="mb-3">
+          <Form.Group as={Col} md="6" controlId="price">
           <Form.Label>Preço</Form.Label>
-          <Form.Control 
-            type="number"
-            step={0.1}
-            min = {0}
-            placeholder="R$ 3.50"
-            inputMode='numeric'
-            autoComplete='cc-number'
-            {...register("price", { 
-              required: "Campo obrigatório",
-              pattern: {value: /[0-9]/, message: "Somente números é permitido"}, 
-              maxLength: {value: 60, message: "Número máximo de caracteres é 60"}
-            })}
-          />
-          {errors.price && <span className='error'>{errors.price.message}</span>}
-        </Form.Group>
+            <Form.Control 
+              type="number"
+              step={0.1}
+              min = {0}
+              placeholder="R$ 3.50"
+              inputMode='numeric'
+              autoComplete='cc-number'
+              {...register("price", { 
+                required: "Campo obrigatório",
+                pattern: {value: /[0-9]/, message: "Somente números é permitido"}, 
+                maxLength: {value: 60, message: "Número máximo de caracteres é 60"}
+              })}
+            />
+            {errors.price && <span className='error'>{errors.price.message}</span>}
+          </Form.Group>
+          <Form.Group as={Col} md="6" controlId="amount">
+            <Form.Label>Quantidade</Form.Label>
+            <Form.Control 
+              type="number"
+              step={1}
+              min = {0}
+              placeholder="80"
+              inputMode='numeric'
+              autoComplete='cc-number'
+              {...register("amount", { 
+                required: "Campo obrigatório",
+                pattern: {value: /[0-9]/, message: "Somente números é permitido"}, 
+                maxLength: {value: 60, message: "Número máximo de caracteres é 60"}
+              })}
+            />
+            {errors.amount && <span className='error'>{errors.amount.message}</span>}
+          </Form.Group>
+        </Row>
 
         <Form.Group className="mb-3" controlId="expiresIn">
           <Form.Label>Data de vencimento</Form.Label>

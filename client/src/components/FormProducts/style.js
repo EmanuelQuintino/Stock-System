@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.section `
+    max-width: 32.0rem;
+    margin: 0 auto;
+    
     input {
         font-size: 1.4rem;
     }
