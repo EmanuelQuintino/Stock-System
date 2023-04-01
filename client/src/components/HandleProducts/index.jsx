@@ -26,11 +26,19 @@ export function HandleProducts() {
       {data && 
         data.map((product) => {
           return (
-            <div className="card" key={product.id}>
-              <img src={product.link_image} alt="image-product" />
-              <p>{product.id}</p>
-              <p>{product.name}</p>
-            </div>
+            <article className="card" key={product.id}>
+              <section>
+                <img src={product.link_image} alt="image-product" />
+              </section>
+              <section>
+                <h3 className="productName">{product.id}# - {product.name}</h3>
+                <div className="container">
+                  <p className="productPrice">R$ {product.price}</p>
+                  <p className="productAmount">Quantidade: {product.amount}</p>
+                </div>
+                <p className="productDescription"><span>Descrição:</span> {product.description}</p>
+              </section>
+            </article>
           )
         })
       }
