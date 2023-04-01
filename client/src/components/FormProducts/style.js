@@ -20,4 +20,8 @@ export const Container = styled.section `
         font-size: 1.0rem;
         margin-top: .2rem;
     }
+
+    .modalFooter {
+        margin-top: 2.4rem;
+    }
 `; 

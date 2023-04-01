@@ -34,7 +34,7 @@ export function InputSearch() {
         </form>
       </div>
       <button className="addProductIcon">
-        <IoIosAddCircleOutline onClick={modalOpen}/>
+        <IoIosAddCircleOutline onClick={() => modalOpen({toUpdate: false})}/>
       </button>
     </Container>
   )

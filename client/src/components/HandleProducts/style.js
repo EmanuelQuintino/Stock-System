@@ -31,12 +31,18 @@ export const Container = styled.section`
     transition: scale 300ms;
     background: #EEE4;
     border-radius: .4rem;
+    padding: .8rem;
   }
   
   .card:hover {
     scale: 1.05;
   }
-  
+
+  .card :nth-child(1) {
+    object-fit: cover;
+    object-position: center;
+  }
+
   .card img {
     width: 100%;
     display: grid;
@@ -45,7 +51,6 @@ export const Container = styled.section`
   }
   
   .card :nth-child(2) {
-    padding: .8rem;
     font-size: 1.4rem;
   }
 
@@ -74,6 +79,7 @@ export const Container = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 1.6rem;
   }
   
   .productDescription {

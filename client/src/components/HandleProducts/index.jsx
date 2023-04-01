@@ -39,7 +39,7 @@ export function HandleProducts() {
             {data && 
               data.map((product) => {
                 return (
-                  <article className="card" key={product.id} onClick={modalOpen}>
+                  <article className="card" key={product.id} onClick={() => modalOpen({toUpdate: true})}>
                     <section>
                       <img src={product.link_image} alt="image-product" />
                     </section>
@@ -61,7 +61,7 @@ export function HandleProducts() {
         <section>
           <Modal show={showModal} onHide={modalClose}>
               <Modal.Header closeButton>
-                  <Modal.Title>Detalhes do Aluno</Modal.Title>
+                  <Modal.Title>Detalhes do Produto</Modal.Title>
               </Modal.Header>
               <Modal.Body style={{padding: '.8rem 2.4rem'}}>
                   <FormProducts 

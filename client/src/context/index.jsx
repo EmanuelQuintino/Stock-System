@@ -5,6 +5,7 @@ export const ProductsContext = createContext({});
 
 export function ProductsProvider({children}) {
   const [showModal, setShowModal] = useState(false);
+  const [modalToUpdate, setModalToUpdate ] = useState(true);
   
   function fetchProducts() {
     return (
@@ -14,8 +15,9 @@ export function ProductsProvider({children}) {
       )
   }
 
-  function modalOpen() {
+  function modalOpen(toUpdate = {toUpdate: false}) {
     setShowModal(true);
+    setModalToUpdate(toUpdate.toUpdate);
   }
 
   function modalClose() {
@@ -27,7 +29,9 @@ export function ProductsProvider({children}) {
       fetchProducts, 
       showModal, 
       modalOpen, 
-      modalClose
+      modalClose,
+      modalToUpdate,
+      setModalToUpdate
     }}>
       {children}
     </ProductsContext.Provider>

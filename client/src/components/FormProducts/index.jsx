@@ -6,11 +6,13 @@ import Modal from 'react-bootstrap/Modal';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { useForm } from "react-hook-form";
+import { useContext } from 'react';
+import { ProductsContext } from '../../context';
 
 export function FormProducts() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [isRegister, setIsRegister ] = useState(true);
-  
+  const { modalToUpdate } = useContext(ProductsContext);
+
   function onSubmit(data) {
     console.log(data);
   }
@@ -107,25 +109,25 @@ export function FormProducts() {
           />
           {errors.linkImage && <span className='error'>{errors.linkImage.message}</span>}
         </Form.Group>
-          <Modal.Footer>
-            {isRegister ?
-                <Button variant="primary" type="submit" style={{
-                  marginTop: "1.6rem",
-                  width: "100%",
-                  padding: ".4rem",
-                  fontSize: "1.4rem" 
-                }}>
-                Cadastrar
-              </Button> 
-              :
+          <Modal.Footer className='modalFooter'>
+            {modalToUpdate ?
               <>
-                <Button variant="danger" onClick={() => deleteStudent(studentData.id)}>
-                    Deletar
-                </Button>
-                <Button variant="primary" type="submit">
-                    Atualizar
-                </Button>
+               <Button variant="danger" onClick={() => deleteStudent(studentData.id)}>
+                   Deletar
+               </Button>
+               <Button variant="primary" type="submit">
+                   Atualizar
+               </Button>
               </>
+              :
+              <Button variant="primary" type="submit" style={{
+                marginTop: "0.8rem",
+                width: "100%",
+                padding: ".4rem",
+                fontSize: "1.4rem" 
+              }}>
+                Cadastrar
+              </Button>
             }
           </Modal.Footer>
         </Form>
