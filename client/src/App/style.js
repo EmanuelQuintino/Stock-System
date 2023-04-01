@@ -6,8 +6,11 @@ export const Container = styled.section `
     }
     
     main {
-        text-align: center;
         padding: 2.4rem;
+    }
+    
+    h1 {
+        text-align: center;
     }
 
     footer img {
