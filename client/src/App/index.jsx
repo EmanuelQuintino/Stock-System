@@ -6,14 +6,14 @@ export function App() {
   return (
     <Container>
       <header>
-        <img src="chocolate-header.jpg" alt="" />
+        <img src="" alt="" />
       </header>
       <main>
         <h1>Stock-System</h1>
         <HandleProducts/>
       </main>
       <footer>
-        <img src="chocolate-footer.jpg" alt="" />
+        <img src="" alt="" />
       </footer>
     </Container>    
   )

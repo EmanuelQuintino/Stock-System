@@ -1,8 +1,12 @@
 import { Container } from "./style"
 import { BsSearch } from "react-icons/bs";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { useContext } from "react";
+import { ProductsContext } from "../../context";
 
-export function InputSearch() {  
+export function InputSearch() {
+  const { modalOpen } = useContext(ProductsContext);
+  
   function handleSubmit(event) {
     event.preventDefault();
   }
@@ -30,7 +34,7 @@ export function InputSearch() {
         </form>
       </div>
       <button className="addProductIcon">
-        <IoIosAddCircleOutline/>
+        <IoIosAddCircleOutline onClick={modalOpen}/>
       </button>
     </Container>
   )
