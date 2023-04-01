@@ -40,10 +40,10 @@ export const Container = styled.section`
     place-content: center;
     border-radius: .4rem .4rem 0 0;
   }
-
+  
   .card :nth-child(2) {
     padding: .8rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   span {
@@ -59,10 +59,9 @@ export const Container = styled.section`
   
   .productPrice {
     font-weight: 600; 
-    font-size: 1.6rem;
     color: orange;
   }
-
+  
   .productAmount {
     font-weight: 600; 
     color: #BBB;
@@ -75,6 +74,7 @@ export const Container = styled.section`
   }
   
   .productDescription {
+    font-size: 1.2rem;
     color: #BBB;
   }
 `;
