@@ -29,7 +29,7 @@ export const Container = styled.section`
     box-shadow: 0 0 .2rem black;
     cursor: pointer;
     transition: scale 300ms;
-    background: #0006;
+    background: #EEE4;
     border-radius: .4rem;
   }
   
@@ -67,7 +67,7 @@ export const Container = styled.section`
   
   .productAmount {
     font-weight: 600; 
-    color: #BBB;
+    color: #888;
   }
   
   .container {
@@ -78,6 +78,6 @@ export const Container = styled.section`
   
   .productDescription {
     font-size: 1.2rem;
-    color: #BBB;
+    color: #888;
   }
 `;

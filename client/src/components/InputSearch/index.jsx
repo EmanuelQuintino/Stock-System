@@ -1,5 +1,6 @@
 import { Container } from "./style"
 import { BsSearch } from "react-icons/bs";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 export function InputSearch() {  
   function handleSubmit(event) {
@@ -22,12 +23,15 @@ export function InputSearch() {
                 name="name"
                 onChange={handleInput} 
             />
-            <label htmlFor="inputSearchCharacter" className="labelInputSearch">Search Character</label>
+            <label htmlFor="inputSearch" className="labelInputSearch">Search Product</label>
             <button className="searchIcon">
               <BsSearch onClick={handleSubmit}/>
             </button>
         </form>
       </div>
+      <button className="addProductIcon">
+        <IoIosAddCircleOutline/>
+      </button>
     </Container>
   )
 }

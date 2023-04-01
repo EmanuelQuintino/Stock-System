@@ -4,8 +4,7 @@ export const Container = styled.section `
     .inputSection {
         position: relative;
         max-width: 36.0rem;
-        margin: 0 auto;
-        right: 1.25%;
+        margin: 2.4rem auto 0;
     }
 
     .labelInputSearch {
@@ -26,7 +25,7 @@ export const Container = styled.section `
         padding: 1.2rem 1.2rem .4rem;
         border-radius: .4rem;
         font-size: 2.0rem;
-        color: white;
+        color: black;
     }
     
     #inputSearch:focus {
@@ -36,19 +35,33 @@ export const Container = styled.section `
     
     #inputSearch:not(:placeholder-shown) + .labelInputSearch,
     #inputSearch:focus + .labelInputSearch {
-        bottom: 3.4rem;
+        bottom: 3.8rem;
         font-size: 1.4rem;
-        background: none;
-        color: white;
+        background: white;
+        color: gray;
     }
 
     .searchIcon {
         position: absolute;
-        bottom: .4rem;
-        right: -1.6rem;
+        bottom: 1.0rem;
+        right: 1.6rem;
         font-size: 2.0rem;
         color: lightgray;
         cursor: pointer;
+        background: none;
+        border: none;
+    }
+
+    .addProductIcon {
+        font-size: 4.2rem;
+        color: lightgray;
+        cursor: pointer;
+        background: none;
+        border: none;
+    }
+
+    .addProductIcon:hover {
+        color: black;
     }
 
     @media (max-width: 36.0rem) {
