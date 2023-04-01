@@ -26,6 +26,8 @@ export const Container = styled.section`
     box-shadow: 0 0 .2rem black;
     cursor: pointer;
     transition: scale 300ms;
+    background: #0006;
+    border-radius: .4rem;
   }
   
   .card:hover {
@@ -36,6 +38,7 @@ export const Container = styled.section`
     width: 100%;
     display: grid;
     place-content: center;
+    border-radius: .4rem .4rem 0 0;
   }
 
   .card :nth-child(2) {
@@ -62,12 +65,16 @@ export const Container = styled.section`
 
   .productAmount {
     font-weight: 600; 
-    color: gray;
+    color: #BBB;
   }
-
+  
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  
+  .productDescription {
+    color: #BBB;
   }
 `;

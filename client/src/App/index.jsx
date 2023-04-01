@@ -5,10 +5,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export function App() {
   return (
     <Container>
-      <h1>App</h1>
+      <header>
+        <img src="chocolate-header.jpg" alt="" />
+      </header>
       <main>
+        <h1>App</h1>
         <HandleProducts/>
       </main>
+      <footer>
+        <img src="chocolate-footer.jpg" alt="" />
+      </footer>
     </Container>    
   )
 }
