@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.section `
     .inputSection {
         position: relative;
-        max-width: 36.0rem;
+        max-width: 42.0rem;
         margin: 2.4rem auto 0;
     }
 
