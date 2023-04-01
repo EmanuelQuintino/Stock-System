@@ -15,6 +15,7 @@ export function FormProducts() {
 
   function onSubmit(data) {
     console.log(data);
+    console.log(modalToUpdate ? "productUpdate()" : "productRegister()");
   }
 
   return (
@@ -112,7 +113,7 @@ export function FormProducts() {
           <Modal.Footer className='modalFooter'>
             {modalToUpdate ?
               <>
-               <Button variant="danger" onClick={() => deleteStudent(studentData.id)}>
+               <Button variant="danger" onClick={() => deleteProduct(product.id)}>
                    Deletar
                </Button>
                <Button variant="primary" type="submit">
