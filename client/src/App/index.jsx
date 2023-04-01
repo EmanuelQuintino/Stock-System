@@ -9,7 +9,7 @@ export function App() {
         <img src="chocolate-header.jpg" alt="" />
       </header>
       <main>
-        <h1>App</h1>
+        <h1>Stock-System</h1>
         <HandleProducts/>
       </main>
       <footer>

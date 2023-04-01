@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
+  .cards{
+    margin-top: 3.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.6rem;
+  }
   
   .spinner {
     animation: spinnerRotate 1s linear infinite;
