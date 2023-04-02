@@ -26,13 +26,11 @@ export function HandleProducts() {
     }
   );
 
-  console.log(data);
-  console.log(searchInput);
-
   const filterProducts = data?.filter((product) => {
     return (
-        String(product.id).toLowerCase().includes(searchInput.toLowerCase()) ||
-        product.name.toLowerCase().includes(searchInput.toLowerCase())
+        String(product.id).includes(searchInput) ||
+        product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchInput.toLowerCase())
     );
   });
   
