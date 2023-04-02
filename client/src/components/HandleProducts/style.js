@@ -76,6 +76,10 @@ export const Container = styled.section`
     font-weight: 600; 
     color: #888;
   }
+
+  .dateExpiresInCaution {
+    color: #D00;
+  }
   
   .container {
     display: flex;

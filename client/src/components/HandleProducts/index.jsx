@@ -54,7 +54,16 @@ export function HandleProducts() {
                         <p className="productPrice">{product.price.toLocaleString('pt-br', {style: 'currency', currency: 'brl'})}</p>
                       </div>
                         <p className="productAmount">Quantidade: {product.amount}</p>
-                        <p className="productExpiresIn">Validade: {new Date(product.expires_in).toLocaleDateString("pt-br")}</p>
+                        <p className="productExpiresIn">
+                          Validade: <span className={new Date >= new Date(product.expires_in) ? "dateExpiresInCaution" : ""}>
+                            {new Date(
+                              new Date(product.expires_in)
+                                .setHours(new Date(product.expires_in)
+                                .getHours() + 3)
+                              ).toLocaleDateString("pt-BR")
+                            }
+                          </span>
+                        </p>
                       <p className="productDescription"><span>Descrição:</span> {product.description}</p>
                     </section>
                   </article>
