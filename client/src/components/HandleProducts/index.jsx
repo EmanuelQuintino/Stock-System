@@ -12,11 +12,14 @@ export function HandleProducts() {
     fetchProducts, 
     showModal, 
     modalOpen, 
-    modalClose
+    modalClose,
+    modalToUpdate
   } = useContext(ProductsContext);
 
-  const {data, isLoading, error} = useQuery(
-    ["products"], fetchProducts, {
+  const {data, isLoading, error} = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts
+    }, {
       retry: 3,
       staleTime: 5000,
     }
@@ -61,7 +64,7 @@ export function HandleProducts() {
         <section>
           <Modal show={showModal} onHide={modalClose}>
               <Modal.Header closeButton>
-                  <Modal.Title>Detalhes do Produto</Modal.Title>
+                  <Modal.Title>{modalToUpdate ? "Atualizar Produto" : "Cadastrar Produto"}</Modal.Title>
               </Modal.Header>
               <Modal.Body style={{padding: '.8rem 2.4rem'}}>
                   <FormProducts 

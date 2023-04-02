@@ -15,7 +15,7 @@ export function FormProducts() {
 
   function onSubmit(data) {
     console.log(data);
-    console.log(modalToUpdate ? "productUpdate(data)" : productRegister(data));
+    modalToUpdate ? "productUpdate(data)" : productRegister(data);
   }
 
   return (
