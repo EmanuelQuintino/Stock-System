@@ -66,11 +66,13 @@ export const Container = styled.section`
   }
   
   .productPrice {
+    font-size: 2.4rem;
     font-weight: 600; 
     color: orange;
   }
   
-  .productAmount {
+  .productAmount,
+  .productExpiresIn {
     font-weight: 600; 
     color: #888;
   }

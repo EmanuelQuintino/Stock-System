@@ -49,11 +49,12 @@ export function HandleProducts() {
                       <img src={product.link_image} alt="image-product" />
                     </section>
                     <section>
-                      <h3 className="productName">{product.id}# - {product.name}</h3>
+                      <h3 className="productName">{product.name}</h3>
                       <div className="container">
-                        <p className="productPrice">R$ {product.price}</p>
-                        <p className="productAmount">Quantidade: {product.amount}</p>
+                        <p className="productPrice">{product.price.toLocaleString('pt-br', {style: 'currency', currency: 'brl'})}</p>
                       </div>
+                        <p className="productAmount">Quantidade: {product.amount}</p>
+                        <p className="productExpiresIn">Validade: {new Date(product.expires_in).toLocaleDateString("pt-br")}</p>
                       <p className="productDescription"><span>Descrição:</span> {product.description}</p>
                     </section>
                   </article>
