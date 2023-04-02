@@ -61,7 +61,7 @@ export function ProductsProvider({children}) {
       
       setProductData({...productData, expires_in: expiresInSplit});
     } else {
-      setProduct({})
+      setProductData({})
     }
   }
 
