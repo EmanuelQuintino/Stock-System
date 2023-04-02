@@ -28,8 +28,8 @@ export function ProductsProvider({children}) {
     )
   }
 
-  function updateProduct(data) {
-    API.put(`/products/${data.id}`, data)
+  function updateProduct(ID, data) {
+    API.put(`/products/${ID}`, data)
       .then((res) => {
         alert(res.data);
         modalClose();

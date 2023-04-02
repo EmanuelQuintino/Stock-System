@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Container } from './style';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -17,11 +16,19 @@ export function FormProducts() {
     updateProduct,
     deleteProduct,
     productData,
+    setProductData
   } = useContext(ProductsContext);
 
   function onSubmit(data) {
-    console.log(data);
-    modalToUpdate ? updateProduct(data) : createProduct(data);
+    modalToUpdate ? updateProduct(productData.id, data) : createProduct(data);
+  }
+
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setProductData({
+      ...productData,
+      [name]: value
+    });
   }
 
   return (
@@ -32,12 +39,13 @@ export function FormProducts() {
           <Form.Control 
             type="text" 
             placeholder="Nome do produto"
-            value={productData.name} 
             {...register("name", { 
               required: "Campo obrigatório",
               pattern: {value: /[A-Za-z]/, message: "Somente texto é permitido"}, 
               maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
             })}
+            value={productData.name} 
+            onChange={handleInputChange}
           />
           {errors.name && <span className='error'>{errors.name.message}</span>}
         </Form.Group>
@@ -47,11 +55,12 @@ export function FormProducts() {
           <Form.Control 
             type="text" 
             placeholder="Descreva detalhes do produto"
-            value={productData.description}
             {...register("description", { 
               required: "Campo obrigatório", 
               maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
             })} 
+            value={productData.description}
+            onChange={handleInputChange}
           />
           {errors.description && <span className='error'>{errors.description.message}</span>}
         </Form.Group>
@@ -66,12 +75,13 @@ export function FormProducts() {
               placeholder="R$"
               inputMode='numeric'
               autoComplete='cc-number'
-              value={productData.price}
               {...register("price", { 
                 required: "Campo obrigatório",
                 pattern: {value: /[0-9]/, message: "Somente números é permitido"}, 
                 maxLength: {value: 20, message: "Número máximo de caracteres é 20"}
               })}
+              value={productData.price}
+              onChange={handleInputChange}
             />
             {errors.price && <span className='error'>{errors.price.message}</span>}
           </Form.Group>
@@ -84,12 +94,13 @@ export function FormProducts() {
               placeholder="Unidades"
               inputMode='numeric'
               autoComplete='cc-number'
-              value={productData.amount}
               {...register("amount", { 
                 required: "Campo obrigatório",
                 pattern: {value: /[0-9]/, message: "Somente números é permitido"}, 
                 maxLength: {value: 20, message: "Número máximo de caracteres é 20"}
               })}
+              value={productData.amount}
+              onChange={handleInputChange}
             />
             {errors.amount && <span className='error'>{errors.amount.message}</span>}
           </Form.Group>
@@ -99,12 +110,13 @@ export function FormProducts() {
           <Form.Label>Data de vencimento</Form.Label>
           <Form.Control 
             type="date"
-            value={productData.expires_in} 
             {...register("expires_in", { 
               required: "Campo obrigatório",
               pattern: {value: /\d{4}[/-]\d{2}[/-]\d{2}/, message: "Insira uma data válida"}, 
               maxLength: {value: 10, message: "Número máximo de caracteres é 10"}
             })}
+            value={productData.expires_in} 
+            onChange={handleInputChange}
           />
           {errors.expiresIn && <span className='error'>{errors.expiresIn.message}</span>}
         </Form.Group>
@@ -114,11 +126,12 @@ export function FormProducts() {
           <Form.Control 
             type="text" 
             placeholder="Link da imagem"
-            value={productData.link_image} 
             {...register("link_image", { 
               required: "Campo obrigatório", 
               maxLength: {value: 2083, message: "Tamanho máximo da URL é de 2083 caracteres"}
             })}
+            value={productData.link_image} 
+            onChange={handleInputChange}
           />
           {errors.linkImage && <span className='error'>{errors.linkImage.message}</span>}
         </Form.Group>
