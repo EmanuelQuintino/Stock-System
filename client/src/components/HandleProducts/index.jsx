@@ -13,7 +13,8 @@ export function HandleProducts() {
     showModal, 
     modalOpen, 
     modalClose,
-    modalToUpdate
+    modalToUpdate,
+    searchInput
   } = useContext(ProductsContext);
 
   const {data, isLoading, error} = useQuery({
@@ -25,12 +26,15 @@ export function HandleProducts() {
     }
   );
 
-  // const filterProducts = data.filter((product) => {
-    // return (
-        // String(product.id).toLowerCase().includes(searchProduct.toLowerCase()) ||
-        // product.name.toLowerCase().includes(searchProduct.toLowerCase()) ||
-    // );
-  // });
+  console.log(data);
+  console.log(searchInput);
+
+  const filterProducts = data?.filter((product) => {
+    return (
+        String(product.id).toLowerCase().includes(searchInput.toLowerCase()) ||
+        product.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
+  });
   
   return (
     <Container>
@@ -40,9 +44,9 @@ export function HandleProducts() {
           <div className="cards">
             {error && <p>Algo deu errado: {error}</p>}
             {isLoading && <p><ImSpinner2 className="spinner"/></p>}
-            {data?.map((product) => {
+            {filterProducts?.map((product) => {
                 return (
-                  <article className="card" key={product.id} onClick={() => modalOpen({toUpdate: true})}>
+                  <article className="card" key={product.id} onClick={() => modalOpen({toUpdate: true}, product.id)}>
                     <section>
                       <img src={product.link_image} alt="image-product" />
                     </section>

@@ -11,11 +11,16 @@ import { ProductsContext } from '../../context';
 
 export function FormProducts() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { modalToUpdate, productRegister } = useContext(ProductsContext);
+  const { 
+    modalToUpdate, 
+    createProduct,
+    updateProduct,
+    deleteProduct 
+  } = useContext(ProductsContext);
 
   function onSubmit(data) {
     console.log(data);
-    modalToUpdate ? "productUpdate(data)" : productRegister(data);
+    modalToUpdate ? updateProduct(data) : createProduct(data);
   }
 
   return (

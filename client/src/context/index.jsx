@@ -6,6 +6,7 @@ export const ProductsContext = createContext({});
 export function ProductsProvider({children}) {
   const [showModal, setShowModal] = useState(false);
   const [modalToUpdate, setModalToUpdate ] = useState(true);
+  const [searchInput, setSearchInput ] = useState("");
   
   function fetchProducts() {
     return (
@@ -15,17 +16,42 @@ export function ProductsProvider({children}) {
       )
   }
 
-  function productRegister(data) {
+  function createProduct(data) {
     return (
       API.post("/products", data)
-        .then((res) => alert(res.data))
+        .then((res) => {
+          alert(res.data);
+          modalClose();
+        })
         .catch((error) => alert(error.response.data))
     )
   }
 
-  function modalOpen(toUpdate = {toUpdate: false}) {
+  function updateProduct(data) {
+    API.put(`/products/${data.id}`, data)
+      .then((res) => {
+        alert(res.data);
+        modalClose();
+      })    
+      .catch((error) => alert(error.response.data));
+  }
+
+  function deleteProduct(data) {
+    const isDelete = confirm("Deseja excluir o produto?");
+    if (isDelete) {
+      API.delete(`/products/${data.id}`)
+        .then((res) => {
+          alert(res.data);
+          modalClose();
+        })    
+        .catch((error) => alert(error.response.data));
+    }
+  }
+
+  function modalOpen(toUpdate = {toUpdate: false}, productID) {
     setShowModal(true);
     setModalToUpdate(toUpdate.toUpdate);
+    console.log(productID);
   }
 
   function modalClose() {
@@ -40,7 +66,11 @@ export function ProductsProvider({children}) {
       modalClose,
       modalToUpdate,
       setModalToUpdate,
-      productRegister
+      createProduct,
+      updateProduct,
+      deleteProduct,
+      searchInput,
+      setSearchInput
     }}>
       {children}
     </ProductsContext.Provider>
