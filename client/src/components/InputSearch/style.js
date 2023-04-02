@@ -60,6 +60,7 @@ export const Container = styled.section `
         cursor: pointer;
         background: none;
         border: none;
+        transition: color 200ms;
     }
 
     .addProductIcon:hover {

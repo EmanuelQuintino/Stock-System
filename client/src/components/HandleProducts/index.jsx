@@ -17,7 +17,8 @@ export function HandleProducts() {
 
   const {data, isLoading, error} = useQuery(
     ["products"], fetchProducts, {
-      retry: 3
+      retry: 3,
+      staleTime: 5000,
     }
   );
 
@@ -34,10 +35,9 @@ export function HandleProducts() {
         <section>
           <InputSearch/>
           <div className="cards">
-            {error && <p>Algo deu errado!</p>}
+            {error && <p>Algo deu errado: {error}</p>}
             {isLoading && <p><ImSpinner2 className="spinner"/></p>}
-            {data && 
-              data.map((product) => {
+            {data?.map((product) => {
                 return (
                   <article className="card" key={product.id} onClick={() => modalOpen({toUpdate: true})}>
                     <section>
