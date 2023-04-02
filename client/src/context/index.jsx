@@ -15,6 +15,14 @@ export function ProductsProvider({children}) {
       )
   }
 
+  function productRegister(data) {
+    return (
+      API.post("/products", data)
+        .then((res) => alert(res.data))
+        .catch((error) => alert(error.response.data))
+    )
+  }
+
   function modalOpen(toUpdate = {toUpdate: false}) {
     setShowModal(true);
     setModalToUpdate(toUpdate.toUpdate);
@@ -31,7 +39,8 @@ export function ProductsProvider({children}) {
       modalOpen, 
       modalClose,
       modalToUpdate,
-      setModalToUpdate
+      setModalToUpdate,
+      productRegister
     }}>
       {children}
     </ProductsContext.Provider>

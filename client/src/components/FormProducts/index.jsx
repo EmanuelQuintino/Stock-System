@@ -11,11 +11,11 @@ import { ProductsContext } from '../../context';
 
 export function FormProducts() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { modalToUpdate } = useContext(ProductsContext);
+  const { modalToUpdate, productRegister } = useContext(ProductsContext);
 
   function onSubmit(data) {
     console.log(data);
-    console.log(modalToUpdate ? "productUpdate()" : "productRegister()");
+    console.log(modalToUpdate ? "productUpdate(data)" : productRegister(data));
   }
 
   return (
@@ -29,7 +29,7 @@ export function FormProducts() {
             {...register("name", { 
               required: "Campo obrigatório",
               pattern: {value: /[A-Za-z]/, message: "Somente texto é permitido"}, 
-              maxLength: {value: 60, message: "Número máximo de caracteres é 60"}
+              maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
             })}
           />
           {errors.name && <span className='error'>{errors.name.message}</span>}
@@ -42,7 +42,7 @@ export function FormProducts() {
             placeholder="Descreva detalhes do produto"
             {...register("description", { 
               required: "Campo obrigatório", 
-              maxLength: {value: 60, message: "Número máximo de caracteres é 60"}
+              maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
             })} 
           />
           {errors.description && <span className='error'>{errors.description.message}</span>}
@@ -61,7 +61,7 @@ export function FormProducts() {
               {...register("price", { 
                 required: "Campo obrigatório",
                 pattern: {value: /[0-9]/, message: "Somente números é permitido"}, 
-                maxLength: {value: 60, message: "Número máximo de caracteres é 60"}
+                maxLength: {value: 20, message: "Número máximo de caracteres é 20"}
               })}
             />
             {errors.price && <span className='error'>{errors.price.message}</span>}
@@ -78,7 +78,7 @@ export function FormProducts() {
               {...register("amount", { 
                 required: "Campo obrigatório",
                 pattern: {value: /[0-9]/, message: "Somente números é permitido"}, 
-                maxLength: {value: 60, message: "Número máximo de caracteres é 60"}
+                maxLength: {value: 20, message: "Número máximo de caracteres é 20"}
               })}
             />
             {errors.amount && <span className='error'>{errors.amount.message}</span>}
@@ -89,7 +89,7 @@ export function FormProducts() {
           <Form.Label>Data de vencimento</Form.Label>
           <Form.Control 
             type="date" 
-            {...register("expiresIn", { 
+            {...register("expires_in", { 
               required: "Campo obrigatório",
               pattern: {value: /\d{4}[/-]\d{2}[/-]\d{2}/, message: "Insira uma data válida"}, 
               maxLength: {value: 10, message: "Número máximo de caracteres é 10"}
@@ -103,7 +103,7 @@ export function FormProducts() {
           <Form.Control 
             type="text" 
             placeholder="Link da imagem" 
-            {...register("linkImage", { 
+            {...register("link_image", { 
               required: "Campo obrigatório", 
               maxLength: {value: 2083, message: "Tamanho máximo da URL é de 2083 caracteres"}
             })}
