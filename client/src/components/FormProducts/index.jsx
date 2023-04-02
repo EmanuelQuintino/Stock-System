@@ -15,7 +15,8 @@ export function FormProducts() {
     modalToUpdate, 
     createProduct,
     updateProduct,
-    deleteProduct 
+    deleteProduct,
+    productData,
   } = useContext(ProductsContext);
 
   function onSubmit(data) {
@@ -30,7 +31,8 @@ export function FormProducts() {
           <Form.Label>Produto</Form.Label>
           <Form.Control 
             type="text" 
-            placeholder="Nome do produto" 
+            placeholder="Nome do produto"
+            value={productData.name} 
             {...register("name", { 
               required: "Campo obrigatório",
               pattern: {value: /[A-Za-z]/, message: "Somente texto é permitido"}, 
@@ -45,6 +47,7 @@ export function FormProducts() {
           <Form.Control 
             type="text" 
             placeholder="Descreva detalhes do produto"
+            value={productData.description}
             {...register("description", { 
               required: "Campo obrigatório", 
               maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
@@ -63,6 +66,7 @@ export function FormProducts() {
               placeholder="R$"
               inputMode='numeric'
               autoComplete='cc-number'
+              value={productData.price}
               {...register("price", { 
                 required: "Campo obrigatório",
                 pattern: {value: /[0-9]/, message: "Somente números é permitido"}, 
@@ -80,6 +84,7 @@ export function FormProducts() {
               placeholder="Unidades"
               inputMode='numeric'
               autoComplete='cc-number'
+              value={productData.amount}
               {...register("amount", { 
                 required: "Campo obrigatório",
                 pattern: {value: /[0-9]/, message: "Somente números é permitido"}, 
@@ -93,7 +98,8 @@ export function FormProducts() {
         <Form.Group className="mb-3" controlId="expiresIn">
           <Form.Label>Data de vencimento</Form.Label>
           <Form.Control 
-            type="date" 
+            type="date"
+            value={productData.expires_in} 
             {...register("expires_in", { 
               required: "Campo obrigatório",
               pattern: {value: /\d{4}[/-]\d{2}[/-]\d{2}/, message: "Insira uma data válida"}, 
@@ -107,7 +113,8 @@ export function FormProducts() {
           <Form.Label>Imagem</Form.Label>
           <Form.Control 
             type="text" 
-            placeholder="Link da imagem" 
+            placeholder="Link da imagem"
+            value={productData.link_image} 
             {...register("link_image", { 
               required: "Campo obrigatório", 
               maxLength: {value: 2083, message: "Tamanho máximo da URL é de 2083 caracteres"}
@@ -118,7 +125,7 @@ export function FormProducts() {
           <Modal.Footer className='modalFooter'>
             {modalToUpdate ?
               <>
-               <Button variant="danger" onClick={() => deleteProduct(product.id)}>
+               <Button variant="danger" onClick={() => deleteProduct(productData.id)}>
                    Deletar
                </Button>
                <Button variant="primary" type="submit">

@@ -7,6 +7,7 @@ export function ProductsProvider({children}) {
   const [showModal, setShowModal] = useState(false);
   const [modalToUpdate, setModalToUpdate ] = useState(true);
   const [searchInput, setSearchInput ] = useState("");
+  const [productData, setProductData ] = useState({});
   
   function fetchProducts() {
     return (
@@ -36,10 +37,10 @@ export function ProductsProvider({children}) {
       .catch((error) => alert(error.response.data));
   }
 
-  function deleteProduct(data) {
+  function deleteProduct(ID) {
     const isDelete = confirm("Deseja excluir o produto?");
     if (isDelete) {
-      API.delete(`/products/${data.id}`)
+      API.delete(`/products/${ID}`)
         .then((res) => {
           alert(res.data);
           modalClose();
@@ -48,14 +49,24 @@ export function ProductsProvider({children}) {
     }
   }
 
-  function modalOpen(toUpdate = {toUpdate: false}, productID) {
+  function modalOpen(toUpdate = {toUpdate: false}, productData) {
     setShowModal(true);
     setModalToUpdate(toUpdate.toUpdate);
-    console.log(productID);
+    
+    if (productData) {
+      let expiresInSplit = productData.expires_in;
+      if (String(productData.expires_in).includes('T')) {
+        expiresInSplit = String(productData.expires_in).split('T')[0];
+      }
+      
+      setProductData({...productData, expires_in: expiresInSplit});
+    } else {
+      setProduct({})
+    }
   }
 
   function modalClose() {
-      setShowModal(false);
+    setShowModal(false);
   }
 
   return (
@@ -70,7 +81,9 @@ export function ProductsProvider({children}) {
       updateProduct,
       deleteProduct,
       searchInput,
-      setSearchInput
+      setSearchInput,
+      productData, 
+      setProductData
     }}>
       {children}
     </ProductsContext.Provider>

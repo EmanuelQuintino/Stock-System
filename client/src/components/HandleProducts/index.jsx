@@ -14,7 +14,7 @@ export function HandleProducts() {
     modalOpen, 
     modalClose,
     modalToUpdate,
-    searchInput
+    searchInput,
   } = useContext(ProductsContext);
 
   const {data, isLoading, error} = useQuery({
@@ -26,14 +26,13 @@ export function HandleProducts() {
     }
   );
 
-  data?.sort((a, b) => b.id - a.id);
   const filterProducts = data?.filter((product) => {
     return (
         String(product.id).includes(searchInput) ||
         product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
         product.description.toLowerCase().includes(searchInput.toLowerCase())
     );
-  });
+  }).sort((a, b) => b.id - a.id);
   
   return (
     <Container>
@@ -45,7 +44,7 @@ export function HandleProducts() {
             {isLoading && <p><ImSpinner2 className="spinner"/></p>}
             {filterProducts?.map((product) => {
                 return (
-                  <article className="card" key={product.id} onClick={() => modalOpen({toUpdate: true}, product.id)}>
+                  <article className="card" key={product.id} onClick={() => modalOpen({toUpdate: true}, product)}>
                     <section>
                       <img src={product.link_image} alt="image-product" />
                     </section>
