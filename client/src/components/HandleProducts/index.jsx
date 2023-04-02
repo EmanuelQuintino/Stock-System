@@ -26,6 +26,7 @@ export function HandleProducts() {
     }
   );
 
+  data?.sort((a, b) => b.id - a.id);
   const filterProducts = data?.filter((product) => {
     return (
         String(product.id).includes(searchInput) ||
