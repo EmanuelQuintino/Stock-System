@@ -1,9 +1,13 @@
 import { Container } from "./style";
+import { useContext } from "react";
+import { ProductsContext } from "../../context";
 
-export function CardProduct({}) {
+export function CardProduct({product}) {
+  const { modalOpen } = useContext(ProductsContext);
+
   return(
     <Container>
-      <article className="card" key={product.id} onClick={() => modalOpen({toUpdate: true}, product)}>
+      <article className="card" onClick={() => modalOpen({toUpdate: true}, product)}>
         <section>
           <img src={product.link_image} alt="image-product" />
         </section>

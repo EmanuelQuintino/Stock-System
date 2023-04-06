@@ -6,6 +6,7 @@ import { ImSpinner2 } from "react-icons/im";
 import { InputSearch } from "../InputSearch";
 import Modal from "react-bootstrap/Modal";
 import { FormProducts } from "../FormProducts";
+import { CardProduct } from "../CardProduct";
 
 export function HandleProducts() {
   const { 
@@ -25,10 +26,10 @@ export function HandleProducts() {
       staleTime: 5000,
     }
   );
-
+  
   const filterProducts = data?.filter((product) => {
     return (
-        String(product.id).includes(searchInput) ||
+      String(product.id).includes(searchInput) ||
         product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
         product.description.toLowerCase().includes(searchInput.toLowerCase())
     );
@@ -44,7 +45,7 @@ export function HandleProducts() {
             {isLoading && <p><ImSpinner2 className="spinner"/></p>}
             {filterProducts?.map((product) => {
                 return (
-                  
+                  <CardProduct product={product} key={product.id}/>
                 )
               })
             }
