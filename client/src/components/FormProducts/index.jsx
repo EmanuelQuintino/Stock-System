@@ -44,7 +44,7 @@ export function FormProducts() {
               pattern: {value: /[A-Za-z]/, message: "Somente texto é permitido"}, 
               maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
             })}
-            value={productData.name} 
+            value={productData.name || ""} 
             onChange={handleInputChange}
           />
           {errors.name && <span className='error'>{errors.name.message}</span>}
@@ -59,7 +59,7 @@ export function FormProducts() {
               required: "Campo obrigatório", 
               maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
             })} 
-            value={productData.description}
+            value={productData.description || ""}
             onChange={handleInputChange}
           />
           {errors.description && <span className='error'>{errors.description.message}</span>}
@@ -80,7 +80,7 @@ export function FormProducts() {
                 pattern: {value: /[0-9]/, message: "Somente números é permitido"}, 
                 maxLength: {value: 20, message: "Número máximo de caracteres é 20"}
               })}
-              value={productData.price}
+              value={productData.price || ""}
               onChange={handleInputChange}
             />
             {errors.price && <span className='error'>{errors.price.message}</span>}
@@ -99,7 +99,7 @@ export function FormProducts() {
                 pattern: {value: /[0-9]/, message: "Somente números é permitido"}, 
                 maxLength: {value: 20, message: "Número máximo de caracteres é 20"}
               })}
-              value={productData.amount}
+              value={productData.amount || ""}
               onChange={handleInputChange}
             />
             {errors.amount && <span className='error'>{errors.amount.message}</span>}
@@ -115,7 +115,7 @@ export function FormProducts() {
               pattern: {value: /\d{4}[/-]\d{2}[/-]\d{2}/, message: "Insira uma data válida"}, 
               maxLength: {value: 10, message: "Número máximo de caracteres é 10"}
             })}
-            value={productData.expires_in} 
+            value={productData.expires_in || ""} 
             onChange={handleInputChange}
           />
           {errors.expires_in && <span className='error'>{errors.expires_in.message}</span>}
@@ -130,13 +130,13 @@ export function FormProducts() {
               required: "Campo obrigatório", 
               maxLength: {value: 2083, message: "Tamanho máximo da URL é de 2083 caracteres"}
             })}
-            value={productData.link_image} 
+            value={productData.link_image || ""} 
             onChange={handleInputChange}
           />
           {errors.link_image && <span className='error'>{errors.link_image.message}</span>}
         </Form.Group>
           <Modal.Footer className='modalFooter'>
-            {modalToUpdate ?
+            {modalToUpdate?
               <>
                <Button variant="danger" onClick={() => deleteProduct(productData.id)}>
                    Deletar
