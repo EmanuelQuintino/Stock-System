@@ -12,7 +12,6 @@ export function HandleProducts() {
   const { 
     fetchProducts, 
     showModal, 
-    modalOpen, 
     modalClose,
     modalToUpdate,
     searchInput,

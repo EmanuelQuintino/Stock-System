@@ -118,7 +118,7 @@ export function FormProducts() {
             value={productData.expires_in} 
             onChange={handleInputChange}
           />
-          {errors.expiresIn && <span className='error'>{errors.expiresIn.message}</span>}
+          {errors.expires_in && <span className='error'>{errors.expires_in.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="linkImage">
@@ -133,7 +133,7 @@ export function FormProducts() {
             value={productData.link_image} 
             onChange={handleInputChange}
           />
-          {errors.linkImage && <span className='error'>{errors.linkImage.message}</span>}
+          {errors.link_image && <span className='error'>{errors.link_image.message}</span>}
         </Form.Group>
           <Modal.Footer className='modalFooter'>
             {modalToUpdate ?
