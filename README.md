@@ -1,4 +1,4 @@
-# Sistema de Estoque para cadastro de produtos:
+# Sistema de Estoque para cadastro de produtos
 
 ## REQUISITOS
 - O Sistema deve consumir a própria API
@@ -8,25 +8,25 @@
 ### HOME
 - A página principal deve apresentar os produtos em forma de cards e com paginação
 - Input para o usuário fazer busca por nome ou pela descrição do produto
-- Botão(+) que leva para página de formaulário
+- Botão(+) cadastrar produto que leva para formulário de cadastro
 
 ### CARD
+- Deve conter a imagem, nome, preço e quantidade
 - Ao clicar no nome do produto levar para página de detalhes
-- Botão "Edite" que leva para página de formulário
+- Botão "Edite" que leva para formulário de edição
 
 ### DETALHES
 - Deve conter a imagem e todos os dados do produto mais botão "Editar" que leva para formulário de edição
 
 ### FORMULÁRIO
-- O formulário de cadatrar e editar podem ter a mesma estratura
-- Os inputs devem conter labels e validação de campos (também na API)
+- O formulário de cadastrar e editar podem ter a mesma estrutura
+- Os inputs devem conter label e validação de campo
 - O formulário de cadastrar deve conter botão de "Salvar"
 - O formulário de editar deve conter botão de "Salvar" e "Excluir"
 
 ## TECHNOLOGIES
 
 ### Front
-
 - `React`
 - `Typescript`
 - `ReactQuery`
@@ -36,7 +36,6 @@
 - `Styled Components`
 
 ### Server
-
 - `Typescript`
 - `Node.js`
 - `Express`
