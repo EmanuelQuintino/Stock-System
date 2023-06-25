@@ -29,11 +29,12 @@
 ### Front
 - `React`
 - `Typescript`
-- `ReactQuery`
-- `useForm`
+- `Styled-Components`
+- `React-Router-Dom`
+- `Tanstack-Query`
+- `React-Hook-Form`
 - `useContext`
 - `Axios`
-- `Styled Components`
 
 ### Server
 - `Typescript`
